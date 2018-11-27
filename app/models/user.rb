@@ -5,6 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :chat_rooms, dependent: :destroy
   has_many :messages, dependent: :destroy
+  has_and_belongs_to_many :rooms
+
+  scope :exclude, ->(user) { where.not(id: user.id) }
 
   def name
     email.split('@')[0]

@@ -3,7 +3,6 @@ module ApplicationCable
     identified_by :current_user
 
     def connect
-      byebug
       self.current_user = find_verified_user
       logger.add_tags 'ActionCable', current_user.email
     end
